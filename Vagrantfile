@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.install_master = true
       salt.no_minion = true
       salt.verbose = true
+			salt.bootstrap_options = "-P"
     end
   end
 
@@ -38,6 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.minion_pub = "saltstack/keys/minion1.pub"
       salt.install_type = "stable"
       salt.verbose = true
+			salt.bootstrap_options = "-P"
     end
   end
 
@@ -56,6 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.minion_pub = "saltstack/keys/minion2.pub"
       salt.install_type = "stable"
       salt.verbose = true
+			salt.bootstrap_options = "-P"
     end
   end
 

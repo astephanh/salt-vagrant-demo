@@ -11,6 +11,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master_config.vm.network "private_network", ip: "192.168.50.10"
     master_config.vm.synced_folder "saltstack/salt/", "/srv/salt"
 
+    config.ssh.username = 'root'
+    #config.ssh.password = 'vagrant'
+    config.ssh.insert_key = 'true'
+		config.ssh.forward_agent = true
+
     master_config.vm.provision :salt do |salt|
       salt.master_config = "saltstack/etc/master"
       salt.master_key = "saltstack/keys/master_minion.pem"
@@ -33,6 +38,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.host_name = 'saltminion1.local'
     minion_config.vm.network "private_network", ip: "192.168.50.11"
 
+    config.ssh.username = 'root'
+    config.ssh.password = 'vagrant'
+    config.ssh.insert_key = 'true'
+		config.ssh.forward_agent = true
+
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "saltstack/etc/minion1"
       salt.minion_key = "saltstack/keys/minion1.pem"
@@ -51,6 +61,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #minion_config.vm.box = "chef/centos-6.5"
     minion_config.vm.host_name = 'saltminion2.local'
     minion_config.vm.network "private_network", ip: "192.168.50.12"
+
+    config.ssh.username = 'root'
+    config.ssh.password = 'vagrant'
+    config.ssh.insert_key = 'true'
+		config.ssh.forward_agent = true
 
     minion_config.vm.provision :salt do |salt|
       salt.minion_config = "saltstack/etc/minion2"
